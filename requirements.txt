@@ -11,3 +11,4 @@ cffi==1.15.0
 cryptography==3.4.7
 pycparser==2.21
 six==1.16.0
+gunicorn==23.0.0
