@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Monitoring Data</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Monitoring Data</h1>
+        </div>
+        <div class="monitoring-data">
+            <h2>Files:</h2>
+            <table>
+                <tr>
+                    <th>Filename</th>
+                    <th>Status</th>
+                    <th>Last Modified</th>
+                    <th>Size</th>
+                </tr>
+                {% for data in monitoring_data %}
+                <tr>
+                    <td>{{ data.filename }}</td>
+                    <td>{{ data.status }}</td>
+                    <td>{{ data.last_modified }}</td>
+                    <td>{{ data.size }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</body>
+</html>

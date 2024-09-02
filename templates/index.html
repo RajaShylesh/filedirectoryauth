@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File Server</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+        }
+        .file-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .file-list li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .file-list li:last-child {
+            border-bottom: none;
+        }
+        .file-list li a {
+            text-decoration: none;
+            color: #337ab7;
+        }
+        .file-list li a:hover {
+            text-decoration: underline;
+        }
+        .upload-form {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>File Server</h1>
+        </div>
+        <h2>Welcome, {{ current_user.username }}!</h2>
+        <div class="file-list">
+            <h2>Files:</h2>
+            <ul>
+            {% for file in files %}
+                <li><a href="{{ url_for('serve_file', filename=file) }}">{{ file }}</a></li>
+            {% endfor %}
+            </ul>
+        </div>
+        <div class="upload-form">
+            <h2>Upload a file:</h2>
+            <form action="{{ url_for('upload_file') }}" method="post" enctype="multipart/form-data">
+                <input type="file" name="file">
+                <input type="submit" value="Upload">
+            </form>
+        </div>
+        <p><a href="{{ url_for('monitored') }}">Monitoring Data</a></p>
+        <p><a href="{{ url_for('logout') }}">Log Out</a></p>
+    </div>
+</body>
+</html>
